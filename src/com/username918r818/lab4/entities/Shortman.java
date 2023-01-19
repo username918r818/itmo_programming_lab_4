@@ -20,22 +20,31 @@ public class Shortman extends Entity {
         super(name, location, x, y, z);
         this.trait = trait;
         grabbed = null;
+        System.out.println(name + " заспавнился!");
     }
 
     public Entity find(String name) {
+        System.out.println(name + " is looking for " + name + "...");
         return this.position.location.find(name);
     }
 
     public void get(Entity e) {
+        System.out.println(name + " берет " + e.getName());
         this.grabbed = e;
     }
 
     public void get(String name) {
+        System.out.println(this.name + " захотел взять " + name);
         this.grabbed = this.position.location.find(name);
+        if (this.grabbed == null) {
+            System.out.println("В другом месте поищи!");
+        }
     }
 
     public void give(Shortman s) throws CantGive {
+        System.out.println(name + " отдает " + s.name + " " + this.grabbed.getName());
         if (s.grabbed != null) {
+            System.out.println("Некуда класть!");
             throw new CantGive(name + " cant give");
         } else {
             s.get(this.grabbed);
@@ -49,6 +58,7 @@ public class Shortman extends Entity {
 
     public void eat(Container c) {
         if (c == this.grabbed && c.getFood() != null) {
+            System.out.println(name + " кушоет " + c.getFood().getName()  + " из " + this.grabbed.getName());
             if (this.trait == Trait.ILL) {
                 this.trait = Trait.HEALTHY;
             }
@@ -57,6 +67,7 @@ public class Shortman extends Entity {
 
     public void fill(Container c, Food f) {
         if (c == this.grabbed) {
+            System.out.println(name + " плотно наваливает " + f.getName() + " в " + this.grabbed.getName());
             c.fill(f);
         }
     }

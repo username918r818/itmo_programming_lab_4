@@ -56,12 +56,30 @@ public class App {
         Container teapot2 = new Container("Super Teapot", outside, 1, 2, 3);
 
         class Soup implements Food {
+            Soup() {
+                System.out.println("О, шикарный суп наварили!\nО, великий суп наварили!");
+            }
+            public String getName() {
+                return "soup";
+            }
         }
 
         class Porridge implements Food {
+            Porridge() {
+                System.out.println("Ох, ну и наварили мы кашу");
+            }
+            public String getName() {
+                return "porridge";
+            }
         }
 
         class cranberryJelly implements Food {
+            cranberryJelly() {
+                System.out.println("Эту красную, юную, сочную клюкву, ел её, ел её");
+            }
+            public String getName() {
+                return "cranberry jelly";
+            }
         }
 
         shpuntik.get("Super Teapot");
